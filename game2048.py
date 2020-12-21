@@ -1,12 +1,6 @@
 """
     2048 游戏核心算法
-        谈架构
-            显示(界面)与控制(算法)分离
-                控制台
-                PyQt
-                PyGame
-
-        谈算法
+        算法
             1. 高内聚:
                 上下移动 -矩阵转置-> 左右移动
                 向左移动 --> 合并数据 --> 零元素后移
@@ -32,10 +26,6 @@ def zero_to_end():
             list_merge.append(0)
 
 
-# zero_to_end()
-# print(list_merge)
-
-
 # 2. 定义函数　merge()
 # [2,0,2,0]  -->[2,2,0,0]  -->  [4,0,0,0]
 # [2,0,0,2]  -->[2,2,0,0]  -->  [4,0,0,0]
@@ -44,7 +34,7 @@ def zero_to_end():
 def merge():
     """
         合并数据
-          核心思想：零元素后移，判断是否相邻相同。如果是则合并.
+        核心思想：零元素后移，判断是否相邻相同。如果是则合并.
     """
     zero_to_end()
     for i in range(len(list_merge) - 1):
@@ -52,8 +42,6 @@ def merge():
             list_merge[i] += list_merge[i + 1]
             del list_merge[i + 1]
             list_merge.append(0)
-            # 加分
-
 
 # merge()
 # print(list_merge)
@@ -71,7 +59,6 @@ def move_left():
     """
         向左移动map
         思想：获取每行，交给list_merge，在通知merge()进行合并
-    :return:
     """
     global list_merge
     for line in map:
@@ -87,7 +74,6 @@ def move_right():
     """
         向左移动map
         思想：获取每行，交给list_merge，在通知merge()进行合并
-    :return:
     """
     global list_merge
     for line in map:
@@ -106,8 +92,7 @@ def move_right():
 def square_matrix_transposition():
     """
         方阵转置（列转换为行）
-    :param map: 需要转置的方阵
-    :return:
+        :param map: 需要转置的方阵
     """
     for c in range(1, len(map)):  # 1 2 3
         for r in range(c, len(map)):
@@ -129,7 +114,6 @@ def move_down():
     """
         向下移动
         思想: 转置  move_right　转置
-    :return:
     """
     square_matrix_transposition()
     move_right()
